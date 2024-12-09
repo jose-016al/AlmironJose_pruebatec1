@@ -10,37 +10,37 @@ import java.util.logging.Logger;
 
 public class ControladoraPersistencia {
 
-    EmpleadoJpaController projJPA = new EmpleadoJpaController();
+    EmpleadoJpaController empJPA = new EmpleadoJpaController();
 
-    public void crearEmpleado(Empleado proj) {
-        projJPA.create(proj);
+    public void createEmployee(Empleado proj) {
+        empJPA.create(proj);
     }
 
-    public void borrarEmpleado(Long id) {
+    public void deleteEmployee(Long id) {
         try {
-            projJPA.destroy(id);
+            empJPA.destroy(id);
         } catch (NonexistentEntityException ex) {
             Logger.getLogger(ControladoraPersistencia.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
-    public List<Empleado> traerEmpleados () {
-        return projJPA.findEmpleadoEntities();
+    public List<Empleado> getEmployee () {
+        return empJPA.findEmpleadoEntities();
     }
 
-/*    public List<Empleado> traerEmpleadosPorTipo(String tipo) {
-        List<Empleado> all = projJPA.findEmpleadoEntities();
+    public List<Empleado> getEmployeeByPosition(String position) {
+        List<Empleado> all = empJPA.findEmpleadoEntities();
         List<Empleado> search = new ArrayList<>();
-        for (Empleado proyecto : all)
-            if (proyecto.getTipo().equalsIgnoreCase(tipo)) {
-                search.add(proyecto);
+        for (Empleado empleado : all)
+            if (empleado.getPosition().equalsIgnoreCase(position)) {
+                search.add(empleado);
             }
         return search;
-    }*/
+    }
 
-    public void modificarEmpleado (Empleado proj) {
+    public void modifyEmployee(Empleado empleado) {
         try {
-            projJPA.edit(proj);
+            empJPA.edit(empleado);
         } catch (Exception ex) {
             Logger.getLogger(ControladoraPersistencia.class.getName()).log(Level.SEVERE, null, ex);
         }
